@@ -1,0 +1,12 @@
+[[plugins]] 
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+
+[[plugins]]
+repo = 'williamboman/nvim-lsp-installer'
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+
