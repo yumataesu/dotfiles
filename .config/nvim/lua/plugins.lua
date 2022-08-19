@@ -10,46 +10,93 @@ packer.startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
-	
-  
+-- LSP Server
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use 'neovim/nvim-lspconfig' -- LSP
+-- Autocom[pletes
+  use "hrsh7th/nvim-cmp"
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-vsnip"
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/vim-vsnip"
 
   use "lewis6991/gitsigns.nvim"
-
   use "akinsho/toggleterm.nvim"
 end)
 
 -- 1. LSP Sever management
 -- keyboard shortcut
 -- vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
+vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
-local mason = require('mason')
-mason.setup({
-   ui = {
-     icons = {
-       package_installed = "✓",
-       package_pending = "➜",
-       package_uninstalled = "✗"
-     }
-   }
- })
+local on_attach = function(client, bufnr)
+
+  -- LSPサーバーのフォーマット機能を無効にするには下の行をコメントアウト
+  -- 例えばtypescript-language-serverにはコードのフォーマット機能が付いているが代わりにprettierでフォーマットしたいときなどに使う
+  client.resolved_capabilities.document_formatting = false
+
+  local set = vim.keymap.set
+  set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+  set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+  set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+  set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+  set("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+  set("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>")
+  set("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>")
+  set("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>")
+  set("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+  set("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+  set("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+  set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+  set("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+  set("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
+  set("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
+  set("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
+  set("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+end
 
 
-local nvim_lsp = require('lspconfig')
-local mason_lspconfig = require('mason-lspconfig')
-mason_lspconfig.setup_handlers({ function(server_name)
-  local opts = {}
-   opts.on_attach = function(_, bufnr)
-     local bufopts = { silent = true, buffer = bufnr }
-     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-     vim.keymap.set('n', 'gtD', vim.lsp.buf.type_definition, bufopts)
-     vim.keymap.set('n', 'grf', vim.lsp.buf.references, bufopts)
---     vim.keymap.set('n', '<space>p', vim.lsp.buf.format, bufopts)
-    end
-    nvim_lsp[server_name].setup(opts)
-end })
+require("mason").setup()
+require("mason-lspconfig").setup()
+require("mason-lspconfig").setup_handlers {
+  function (server_name) -- default handler (optional)
+    require("lspconfig")[server_name].setup {
+      on_attach = on_attach,
+      capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    }
+  end,
+}
+
+vim.opt.completeopt = "menu,menuone,noselect"
+
+local cmp = require"cmp"
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+  }),
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "vsnip" },
+  }, {
+    { name = "buffer" },
+  })
+})
+
+
+
+
+
+
 
 
 require('gitsigns').setup{}

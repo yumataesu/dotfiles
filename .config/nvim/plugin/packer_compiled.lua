@@ -69,11 +69,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  LuaSnip = {
-    loaded = true,
-    path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\LuaSnip",
-    url = "https://github.com/L3MON4D3/LuaSnip"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp-buffer",
@@ -84,30 +79,15 @@ _G.packer_plugins = {
     path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
-  ["colorbuddy.nvim"] = {
+  ["cmp-vsnip"] = {
     loaded = true,
-    path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\colorbuddy.nvim",
-    url = "https://github.com/tjdevries/colorbuddy.nvim"
+    path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp-vsnip",
+    url = "https://github.com/hrsh7th/cmp-vsnip"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
-  },
-  ["lspkind-nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lspkind-nvim",
-    url = "https://github.com/onsails/lspkind-nvim"
-  },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lspsaga.nvim",
-    url = "https://github.com/glepnir/lspsaga.nvim"
-  },
-  ["lualine.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lualine.nvim",
-    url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -118,16 +98,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
-  },
-  ["neosolarized.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\neosolarized.nvim",
-    url = "https://github.com/svrana/neosolarized.nvim"
-  },
-  ["null-ls.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\null-ls.nvim",
-    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -143,16 +113,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
-  },
-  ["plenary.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\plenary.nvim",
-    url = "https://github.com/nvim-lua/plenary.nvim"
-  },
-  ["prettier.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\prettier.nvim",
-    url = "https://github.com/MunifTanjim/prettier.nvim"
   },
   ["toggleterm.nvim"] = {
     loaded = true,
