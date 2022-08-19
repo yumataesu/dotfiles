@@ -1,7 +1,7 @@
 echo 'Loading powershell profile'
 
 # Pronmp
-# Import-Module posh-git
+Import-Module posh-git
 Import-Module Terminal-Icons
 Set-PSReadLineOption -PredictionSource History
 # Set-PSReadLineOption -PredictionViewStyle ListView
@@ -30,3 +30,5 @@ function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
+
+function lg() { lazygit.exe }
