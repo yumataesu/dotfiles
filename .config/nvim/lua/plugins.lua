@@ -29,14 +29,11 @@ packer.startup(function(use)
 
   use 'glepnir/lspsaga.nvim' -- LSP UIs
   use 'L3MON4D3/LuaSnip'
-  use 'neovim/nvim-lspconfig' -- LSP
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
 
-  use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/vim-vsnip"
-  use "lewis6991/gitsigns.nvim" 
+  use "lewis6991/gitsigns.nvim"
+
+  use "akinsho/toggleterm.nvim"
 end)
 
 -- 1. LSP Sever management
@@ -57,3 +54,25 @@ mason.setup({
 require('mason-lspconfig').setup()
 
 require('gitsigns').setup{}
+
+
+-- Lazygit
+require("toggleterm").setup()
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({
+	cmd = "lazygit",
+	direction = "float",
+	hidden = true
+})
+
+function _lazygit_toggle()
+	lazygit:toggle()
+end
+
+function echo()
+  print("call echo")
+end
+
+
+vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+

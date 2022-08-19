@@ -154,6 +154,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\prettier.nvim",
     url = "https://github.com/MunifTanjim/prettier.nvim"
   },
+  ["toggleterm.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\toggleterm.nvim",
+    url = "https://github.com/akinsho/toggleterm.nvim"
+  },
   ["vim-airline"] = {
     loaded = true,
     path = "C:\\Users\\yumat\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-airline",
