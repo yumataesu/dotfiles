@@ -53,10 +53,12 @@ mason.setup({
 
 require('mason-lspconfig').setup()
 
+
+
 require('gitsigns').setup{}
 
 
--- Lazygit
+-- Lazygit config
 require("toggleterm").setup()
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({
@@ -68,11 +70,6 @@ local lazygit = Terminal:new({
 function _lazygit_toggle()
 	lazygit:toggle()
 end
-
-function echo()
-  print("call echo")
-end
-
 
 vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 
