@@ -10,7 +10,25 @@ packer.startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
-  
+	
+	use {
+    'svrana/neosolarized.nvim',
+    requires = { 'tjdevries/colorbuddy.nvim' }
+  }
+  use 'nvim-lualine/lualine.nvim' -- Statusline
+  use 'nvim-lua/plenary.nvim' -- Common utilities
+  use 'onsails/lspkind-nvim' -- vscode-like pictograms
+  use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
+  use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
+  use 'hrsh7th/nvim-cmp' -- Completion
+  use 'neovim/nvim-lspconfig' -- LSP
+  use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+  use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+
+  use 'glepnir/lspsaga.nvim' -- LSP UIs
+  use 'L3MON4D3/LuaSnip'
   use 'neovim/nvim-lspconfig' -- LSP
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
@@ -18,14 +36,13 @@ packer.startup(function(use)
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/vim-vsnip"
+  use "lewis6991/gitsigns.nvim" 
 end)
 
 -- 1. LSP Sever management
 -- keyboard shortcut
 -- vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
---
---
---
+
 local mason = require('mason')
 mason.setup({
    ui = {
@@ -37,18 +54,6 @@ mason.setup({
    }
  })
 
-local nvim_lsp = require('lspconfig')
-local mason_lspconfig = require('mason-lspconfig')
-mason_lspconfig.setup_handlers({ function(server_name)
-   local opts = {}
-   opts.on_attach = function(_, bufnr)
-     local bufopts = { silent = true, buffer = bufnr }
-     vim.keymap.set('n', 'K',  vim.lsp.buf.hover, bufopts)
-     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-     vim.keymap.set('n', 'gtD', vim.lsp.buf.type_definition, bufopts)
-     vim.keymap.set('n', 'grf', vim.lsp.buf.references, bufopts)
-     vim.keymap.set('n', '<space>p', vim.lsp.buf.format, bufopts)
-  end
-   nvim_lsp[server_name].setup(opts)
-end })
+require('mason-lspconfig').setup()
 
+require('gitsigns').setup{}
