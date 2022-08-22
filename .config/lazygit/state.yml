@@ -1,9 +1,15 @@
 lastupdatecheck: 0
 recentrepos:
 - C:\Users\yumat
+- C:\Users\yumat\Documents\nqmq.develop\nqmq
+- H:\WorkingSpace\Private\_PROJECT\uran
+- C:\Users\yumat\Desktop\NextSession
 - C:\Users\Public\_WorkingSpace\_VJ\Lithium_v2021
-- C:\Users\yumat\Desktop\lazygit
 startuppopupversion: 5
 customcommandshistory:
 - q
+- git remote add origin git@github.com:yumataesu/uran.git
+- git branch -M main
+- git push -u origin main
+- git add .
 hidecommandlog: false

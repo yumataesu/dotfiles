@@ -23,6 +23,7 @@ packer.startup(function(use)
 
   use "lewis6991/gitsigns.nvim"
   use "akinsho/toggleterm.nvim"
+
 end)
 
 -- 1. LSP Sever management
@@ -94,12 +95,9 @@ cmp.setup({
 
 
 
-
-
-
-
-
 require('gitsigns').setup{}
+
+
 
 -- Lazygit config
 require("toggleterm").setup()
@@ -110,9 +108,9 @@ local lazygit = Terminal:new({
 	hidden = true
 })
 
-function _lazygit_toggle()
+function lazygit_toggle()
 	lazygit:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua lazygit_toggle()<CR>", { noremap = true, silent = true })
 
