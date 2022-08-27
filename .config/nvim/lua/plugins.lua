@@ -14,16 +14,19 @@ packer.startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use 'neovim/nvim-lspconfig' -- LSP
--- Autocom[pletes
+-- Autocompletes
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-vsnip"
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/vim-vsnip"
 
+  use "nvim-treesitter/nvim-treesitter"
+
   use "lewis6991/gitsigns.nvim"
   use "akinsho/toggleterm.nvim"
-
+-- fazzy finder
+  use "junegunn/fzf.vim"
 end)
 
 -- 1. LSP Sever management
@@ -111,4 +114,13 @@ function lazygit_toggle()
 end
 
 vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua lazygit_toggle()<CR>", { noremap = true, silent = true })
+
+
+
+-- require('fzf').setup()
+require('nvim-treesitter.configs').setup{
+  highlight = {
+    enable = true,
+  }
+}
 
