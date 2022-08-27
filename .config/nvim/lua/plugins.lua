@@ -27,6 +27,17 @@ packer.startup(function(use)
   use "akinsho/toggleterm.nvim"
 -- fazzy finder
   use "junegunn/fzf.vim"
+
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    disable = {
+      'lua', 'ruby'
+    }
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
 end)
 
 -- 1. LSP Sever management
@@ -124,3 +135,28 @@ require('nvim-treesitter.configs').setup{
   }
 }
 
+
+
+-- examples for your init.lua
+
+-- empty setup using defaults
+require("nvim-tree").setup()
+
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
