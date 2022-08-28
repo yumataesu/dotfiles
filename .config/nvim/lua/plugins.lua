@@ -136,9 +136,6 @@ require('nvim-treesitter.configs').setup{
 }
 
 
-
--- examples for your init.lua
-
 -- empty setup using defaults
 require("nvim-tree").setup()
 
@@ -160,3 +157,5 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
+
+
