@@ -8,6 +8,9 @@ vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
   use 'wbthomason/packer.nvim'
+
+  use 'folke/tokyonight.nvim'
+
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
 -- LSP Server
@@ -111,23 +114,6 @@ require('gitsigns').setup{}
 
 
 
--- Lazygit config
-require("toggleterm").setup()
-local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({
-	cmd = "lazygit",
-	direction = "float",
-	hidden = true
-})
-
-function lazygit_toggle()
-	lazygit:toggle()
-end
-
-vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>lua lazygit_toggle()<CR>", { noremap = true, silent = true })
-
-
-
 -- require('fzf').setup()
 require('nvim-treesitter.configs').setup{
   highlight = {
@@ -136,10 +122,7 @@ require('nvim-treesitter.configs').setup{
 }
 
 
--- empty setup using defaults
-require("nvim-tree").setup()
 
--- OR setup with some options
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
