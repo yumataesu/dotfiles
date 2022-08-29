@@ -1,6 +1,6 @@
-require('base')
-require('plugins')
-require('maps')
+require('nqmq.base')
+require('nqmq.plugins')
+require('nqmq.maps')
 --
 --
 
