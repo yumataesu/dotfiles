@@ -43,6 +43,10 @@ packer.startup(function(use)
   }
 end)
 
+
+
+vim.opt.completeopt = "menu,menuone,noselect"
+
 -- 1. LSP Sever management
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
@@ -72,7 +76,6 @@ local on_attach = function(client, bufnr)
   set("n", "<C-k>f", "<cmd>lua vim.lsp.buf.formatting()<CR>")
 end
 
-vim.opt.completeopt = "menu,menuone,noselect"
 
 local cmp = require"cmp"
 cmp.setup({
@@ -95,5 +98,3 @@ cmp.setup({
     { name = "buffer" },
   })
 })
-
-
