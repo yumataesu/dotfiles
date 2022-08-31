@@ -44,18 +44,10 @@ packer.startup(function(use)
 end)
 
 
-
-vim.opt.completeopt = "menu,menuone,noselect"
-
 -- 1. LSP Sever management
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
 local on_attach = function(client, bufnr)
-
-  -- LSPサーバーのフォーマット機能を無効にするには下の行をコメントアウト
-  -- 例えばtypescript-language-serverにはコードのフォーマット機能が付いているが代わりにprettierでフォーマットしたいときなどに使う
-  -- client.resolved_capabilities.document_formatting = false
-
   local set = vim.keymap.set
   set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
   set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -98,3 +90,4 @@ cmp.setup({
     { name = "buffer" },
   })
 })
+
