@@ -44,7 +44,6 @@ packer.startup(function(use)
 end)
 
 -- 1. LSP Sever management
-vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
 
 local on_attach = function(client, bufnr)
 
@@ -107,10 +106,6 @@ cmp.setup({
     { name = "buffer" },
   })
 })
-
-
-
-require('gitsigns').setup{}
 
 
 
