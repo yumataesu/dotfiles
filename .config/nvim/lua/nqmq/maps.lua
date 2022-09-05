@@ -10,6 +10,7 @@ keymap.set('n', '<C-w><up>', '<C-w>+')
 keymap.set('n', '<C-w><down>', '<C-w>-')
 
 
--- keymap.set('n', '', '')
+keymap.set('n', '<C-PageUp>', '<cmd>bprevious<cr>')
+keymap.set('n', '<C-PageDown>', '<cmd>bnext<cr>')
 
 
