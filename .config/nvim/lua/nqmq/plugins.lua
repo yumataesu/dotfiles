@@ -41,16 +41,12 @@ packer.startup(function(use)
     },
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
+  use 'windwp/nvim-autopairs'
 end)
 
+
 -- 1. LSP Sever management
-
 local on_attach = function(client, bufnr)
-
-  -- LSPサーバーのフォーマット機能を無効にするには下の行をコメントアウト
-  -- 例えばtypescript-language-serverにはコードのフォーマット機能が付いているが代わりにprettierでフォーマットしたいときなどに使う
-  -- client.resolved_capabilities.document_formatting = false
-
   local set = vim.keymap.set
   set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
   set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -70,7 +66,6 @@ local on_attach = function(client, bufnr)
 --  set("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
   set("n", "<C-k>f", "<cmd>lua vim.lsp.buf.formatting()<CR>")
 end
-
 
 require("mason").setup()
 require("mason-lspconfig").setup()
@@ -150,3 +145,7 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
+require("nvim-autopairs").setup {}
+
+
