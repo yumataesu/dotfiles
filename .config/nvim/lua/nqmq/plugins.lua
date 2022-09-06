@@ -10,13 +10,14 @@ packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use 'folke/tokyonight.nvim'
-
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
+
 -- LSP Server
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use 'neovim/nvim-lspconfig' -- LSP
+
 -- Autocompletes
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
@@ -33,16 +34,29 @@ packer.startup(function(use)
 
   use {
     'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
-    disable = {
-      'lua', 'ruby'
-    }
-    },
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
+  use 'kyazdani42/nvim-web-devicons'
   use 'windwp/nvim-autopairs'
 end)
+
+
+require'nvim-web-devicons'.setup {
+ -- your personnal icons can go here (to override)
+ -- you can specify color or cterm_color instead of specifying both of them
+ -- DevIcon will be appended to `name`
+ override = {
+  zsh = {
+    icon = "",
+    color = "#428850",
+    cterm_color = "65",
+    name = "Zsh"
+  }
+ };
+ -- globally enable default icons (default to false)
+ -- will get overriden by `get_icons` option
+ default = true;
+}
 
 
 -- 1. LSP Sever management
@@ -147,5 +161,4 @@ end
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 require("nvim-autopairs").setup {}
-
 
