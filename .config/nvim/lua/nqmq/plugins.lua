@@ -41,7 +41,41 @@ packer.startup(function(use)
   use 'numToStr/Comment.nvim'
 end)
 
-require('Comment').setup()
+require('Comment').setup {
+  toggler = {
+        ---Line-comment toggle keymap
+        line = '<gra>',
+        ---Block-comment toggle keymap
+        block = 'gbc',
+    },
+    mappings = {
+        ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+        basic = true,
+        ---Extra mapping; `gco`, `gcO`, `gcA`
+        extra = false,
+        ---Extended mapping; `g>` `g<` `g>[count]{motion}` `g<[count]{motion}`
+        extended = false,
+    },
+}
+
+local api = require('Comment.api')
+vim.keymap.set('n', '<C-_>', api.toggle.linewise.current)
+
+
+
+--local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
+-- Toggle selection (linewise)
+--vim.keymap.set('x', '<C-_', function()
+--  vim.api.nvim_feedkeys(esc, 'nx', false)
+--  api.toggle.linewise(vim.fn.visualmode())
+--end)
+
+-- Toggle selection (blockwise)
+--vim.keymap.set('x', '<C-_>', function()
+--  vim.api.nvim_feedkeys(esc, 'nx', false)
+--  api.toggle.blockwise(vim.fn.visualmode())
+--end)
+
 
 require'nvim-web-devicons'.setup {
  -- your personnal icons can go here (to override)
