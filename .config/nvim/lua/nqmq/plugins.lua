@@ -42,15 +42,9 @@ packer.startup(function(use)
 end)
 
 require('Comment').setup {
-  toggler = {
-        ---Line-comment toggle keymap
-        line = '<gra>',
-        ---Block-comment toggle keymap
-        block = 'gbc',
-    },
     mappings = {
         ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
-        basic = true,
+        basic = false,
         ---Extra mapping; `gco`, `gcO`, `gcA`
         extra = false,
         ---Extended mapping; `g>` `g<` `g>[count]{motion}` `g<[count]{motion}`
